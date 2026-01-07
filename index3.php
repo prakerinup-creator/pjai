@@ -1,9 +1,3 @@
-<?php
-include 'koneksi.php';
-$query = "SELECT * FROM `data-siswa` "; 
-$hasil = mysqli_query($koneksi, $query); 
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -262,4 +256,5 @@ $hasil = mysqli_query($koneksi, $query);
     </main>
 
 </body>
+
 </html>
