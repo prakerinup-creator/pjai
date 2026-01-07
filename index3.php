@@ -1,0 +1,265 @@
+<?php
+include 'koneksi.php';
+$query = "SELECT * FROM `data-siswa` "; 
+$hasil = mysqli_query($koneksi, $query); 
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK AL MAARIF BUMIAYU</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2a9445;
+            --primary-dark: #1e6b32;
+            --dark: #1e1e1e;
+            --light: #f4f7f6;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            display: flex; /* Menggunakan flex untuk membagi sidebar dan konten */
+        }
+
+        /* --- SIDEBAR NAVIGATION --- */
+        header {
+            background: white;
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            padding: 0 20px 2rem 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+
+        .brand img {
+            width: 80px;
+            height: auto;
+        }
+
+        .brand-text h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            width: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        nav a:hover {
+            background: #f0fdf4;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        main {
+            margin-left: var(--sidebar-width); /* Memberi ruang untuk sidebar */
+            width: calc(100% - var(--sidebar-width));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 15px;
+            height: 220px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .tiktok-footer-link {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .tiktok-footer-link:hover {
+            color: #ff0050;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            header {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem 0;
+            }
+            main {
+                margin-left: 0;
+                width: 100%;
+            }
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a { padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <img src="smk.jpeg" alt="Logo SMK">
+            <div class="brand-text">
+                <h1>SMK AL-MAARIF</h1>
+                <small>KALIWADAS - BUMIAYU</small>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index2.php"><i class="fa-solid fa-code"></i> RPL</a></li>
+                <li><a href="index4.php"><i class="fa-solid fa-motorcycle"></i> TSM</a></li>
+                <li><a href="index5.php"><i class="fa-solid fa-file-invoice-dollar"></i> AKL</a></li>
+                <li><a href="index6.php"><i class="fa-solid fa-users"></i> Ekskul</a></li>
+                <li><a href="index7.php"><i class="fa-solid fa-phone"></i> Kontak</a></li>
+                <li><a href="index8.php"><i class="fa-solid fa-info-circle"></i> Tentang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            
+            <section class="section-card">
+                <h2>Tentang Sekolah Kami</h2>
+                <p>
+                    SMK Al-Maarif Bumiayu merupakan lembaga pendidikan kejuruan yang berdedikasi untuk mencetak generasi unggul, terampil, dan berakhlak mulia. Dengan fasilitas modern dan tenaga pendidik profesional, kami siap mengantarkan siswa menuju dunia kerja maupun jenjang pendidikan yang lebih tinggi.
+                </p>
+                <br>
+                <h2>Visi dan Misi</h2>
+                <p>
+                    Meningkatkan minat siswa untuk belajar dan memperdalam ilmu teknologi, teknik mesin, bisnis, dan manajemen keuangan guna menghadapi tantangan industri global.
+                </p>
+            </section>
+
+            <h2 style="text-align:left; margin-bottom: 25px; font-weight: 700;">
+                <i class="fa-solid fa-images" style="color: var(--primary);"></i> Galeri Kegiatan
+            </h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="wa.jpeg" alt="Kegiatan SMK"></div>
+                <div class="gallery-item"><img src="rpl.jpg" alt="Fasilitas SMK"></div>
+                <div class="gallery-item"><img src="images.jpg" alt="Siswa SMK"></div>
+                <div class="gallery-item"><img src="himalaya.jpg" alt="Lingkungan SMK"></div>
+                <div class="gallery-item"><img src="himalaya.jpg" alt="Lingkungan SMK"></div>
+                <div class="gallery-item"><img src="himalaya.jpg" alt="Lingkungan SMK"></div>
+            </div>
+        </div>
+
+        <footer>
+            <a href="https://www.tiktok.com/@smkalmaarifbumiayu" target="_blank" class="tiktok-footer-link">
+                <i class="fa-brands fa-tiktok" style="font-size: 2rem;"></i><br>
+                <strong>@smkalmaarifbumiayu</strong>
+            </a>
+            <p style="margin-top: 20px; opacity: 0.6; font-size: 0.8rem;">
+                &copy; 2026 SMK Al-Maarif Bumiayu. All Rights Reserved.
+            </p>
+        </footer>
+    </main>
+
+</body>
+</html>
